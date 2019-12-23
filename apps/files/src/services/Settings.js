@@ -35,6 +35,7 @@ export default class Settings {
 			return false
 		}
 		this.#settings.push(view)
+		return true
 	}
 
 	get settings() {
