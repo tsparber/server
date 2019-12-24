@@ -33,8 +33,8 @@ export default class Setting {
 	 *
 	 * @param {string} name the name of this setting
 	 * @param {Function} component.el function that returns an unmounted dom element to be added
-	 * @param {Function} component.open callback for when setting is added
-	 * @param {Function} component.close callback for when setting is closed
+	 * @param {Function} [component.open] callback for when setting is added
+	 * @param {Function} [component.close] callback for when setting is closed
 	 */
 	constructor(name, { el, open, close }) {
 		this.#name = name
