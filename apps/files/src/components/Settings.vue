@@ -37,7 +37,7 @@ export default {
 	},
 	updated() {
 		this.settings.forEach(e => {
-			this.$refs[e.name][0].appendChild(e.el)
+			this.$refs[e.name][0].appendChild(e.el())
 			e.open()
 		})
 	},

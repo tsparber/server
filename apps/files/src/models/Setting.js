@@ -32,7 +32,7 @@ export default class Setting {
 	 * Create a new files app setting
 	 *
 	 * @param {string} name the name of this setting
-	 * @param {HTMLElement} component.el unmounted dom element to be added
+	 * @param {Function} component.el function that returns an unmounted dom element to be added
 	 * @param {Function} component.open callback for when setting is added
 	 * @param {Function} component.close callback for when setting is closed
 	 */
