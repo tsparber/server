@@ -23,26 +23,46 @@
 
 export default class Setting {
 
-	#component
+	#close
+	#el
 	#name
+	#open
 
 	/**
 	 * Create a new files app setting
 	 *
 	 * @param {string} name the name of this setting
-	 * @param {Object} component the vue component
+	 * @param {HTMLElement} component.el unmounted dom element to be added
+	 * @param {Function} component.open callback for when setting is added
+	 * @param {Function} component.close callback for when setting is closed
 	 */
-	constructor(name, component) {
+	constructor(name, { el, open, close }) {
 		this.#name = name
-		this.#component = component
+		this.#el = el
+		this.#open = open
+		this.#close = close
+		if (typeof this.#open !== 'function') {
+			this.#open = () => {}
+		}
+		if (typeof this.#close !== 'function') {
+			this.#close = () => {}
+		}
 	}
 
 	get name() {
 		return this.#name
 	}
 
-	get component() {
-		return this.#component
+	get el() {
+		return this.#el
+	}
+
+	get open() {
+		return this.#open
+	}
+
+	get close() {
+		return this.#close
 	}
 
 }

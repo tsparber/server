@@ -22,11 +22,7 @@
 <template>
 	<div id="files-app-extra-settings">
 		<template v-for="setting in settings">
-			<component
-				:is="setting.component"
-				:key="setting.name"
-				:component="setting.component"
-				:name="setting.name" />
+			<div :ref="setting.name" :key="setting.name" />
 		</template>
 	</div>
 </template>
@@ -38,6 +34,17 @@ export default {
 		return {
 			settings: OCA.Files.Settings.settings,
 		}
+	},
+	updated() {
+		this.settings.forEach(e => {
+			this.$refs[e.name][0].appendChild(e.el)
+			e.open()
+		})
+	},
+	beforeDestroy() {
+		this.settings.forEach(e => {
+			e.close()
+		})
 	},
 }
 </script>
