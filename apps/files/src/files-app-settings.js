@@ -37,5 +37,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	Object.assign(window.OCA.Files.Settings, { Setting })
 
 	// Init Vue app
-	new (Vue.extend(SettingsView))().$mount('#files-app-settings')
+	const View = Vue.extend(SettingsView)
+	new View().$mount('#files-app-settings')
 })
