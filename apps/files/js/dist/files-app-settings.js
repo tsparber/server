@@ -71,5 +71,5 @@ var c=function(){function t(){!function(t,e){if(!(t instanceof e))throw new Type
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-o.default.prototype.t=t,window.addEventListener("DOMContentLoaded",(function(){window.OCA.Files||(window.OCA.Files={}),Object.assign(window.OCA.Files,{Settings:new c}),Object.assign(window.OCA.Files.Settings,{Setting:y}),(new(o.default.extend(d))).$mount("#files-app-settings")}))},6:function(t,e){var n;n=function(){return this}();try{n=n||new Function("return this")()}catch(t){"object"==typeof window&&(n=window)}t.exports=n}});
+o.default.prototype.t=t,window.addEventListener("DOMContentLoaded",(function(){window.OCA.Files||(window.OCA.Files={}),Object.assign(window.OCA.Files,{Settings:new c}),Object.assign(window.OCA.Files.Settings,{Setting:y}),new o.default({el:"#files-app-settings",render:function(t){return t(d)}})}))},6:function(t,e){var n;n=function(){return this}();try{n=n||new Function("return this")()}catch(t){"object"==typeof window&&(n=window)}t.exports=n}});
 //# sourceMappingURL=files-app-settings.js.map

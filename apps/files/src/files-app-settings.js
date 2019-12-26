@@ -37,6 +37,9 @@ window.addEventListener('DOMContentLoaded', () => {
 	Object.assign(window.OCA.Files.Settings, { Setting })
 
 	// Init Vue app
-	const View = Vue.extend(SettingsView)
-	new View().$mount('#files-app-settings')
+	// eslint-disable-next-line
+	new Vue({
+		el: '#files-app-settings',
+		render: h => h(SettingsView),
+	})
 })
