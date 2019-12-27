@@ -29,6 +29,13 @@ export default class Settings {
 		console.debug('OCA.Files.Settings initialized')
 	}
 
+	/**
+	 * Register a new setting
+	 *
+	 * @since 19.0.0
+	 * @param {Setting} view element to add to settings
+	 * @returns {boolean} whether registering was successful
+	 */
 	register(view) {
 		if (this.#settings.filter(e => e.name === view.name).length > 0) {
 			console.error('A setting with the same name is already registered')
