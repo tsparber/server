@@ -46,7 +46,7 @@ export default class Settings {
 	}
 
 	get settings() {
-		return this.#settings
+		return this.#settings.map(e => e.el)
 	}
 
 }
