@@ -1,5 +1,5 @@
 <!--
-  - @copyright Copyright (c) 2019 Gary Kim <gary@garykim.dev>
+  - @copyright Copyright (c) 2020 Gary Kim <gary@garykim.dev>
   -
   - @author Gary Kim <gary@garykim.dev>
   -
@@ -19,34 +19,23 @@
   - along with this program. If not, see <http://www.gnu.org/licenses/>.
   -
   -->
-<template>
-	<div id="files-app-extra-settings">
-		<template v-for="setting in settings">
-			<div :ref="setting.name" :key="setting.name" />
-		</template>
-	</div>
-</template>
 
+<template>
+	<div />
+</template>
 <script>
 export default {
-	name: 'Settings',
-	data() {
-		return {
-			settings: OCA.Files.Settings.settings,
+	name: 'Setting',
+	props: {
+		el: {
+			type: Function,
+			required: true,
 		}
 	},
-	updated() {
-		this.$nextTick(() => {
-			this.settings.forEach(e => {
-				this.$refs[e.name][0].appendChild(e())
-			})
-		})
-	},
+	mounted() {
+		this.$el.appendChild(this.el())
+	}
 }
 </script>
-
-<style lang="scss" scoped>
-#files-app-extra-settings {
-	padding-bottom: 8px;
-}
+<style>
 </style>

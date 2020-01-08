@@ -23,7 +23,7 @@
 
 import Vue from 'vue'
 import Settings from './services/Settings'
-import SettingsView from './components/Settings'
+import SettingsView from './views/Settings'
 import Setting from './models/Setting'
 
 Vue.prototype.t = t
@@ -41,5 +41,10 @@ window.addEventListener('DOMContentLoaded', () => {
 	new Vue({
 		el: '#files-app-settings',
 		render: h => h(SettingsView),
+	})
+
+	document.getElementById('app-settings-header').addEventListener('click', e => {
+		const opened = e.currentTarget.children[0].classList.contains('opened')
+		OCA.Files.Settings.settings.forEach(e => opened ? e.close() : e.open())
 	})
 })
