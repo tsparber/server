@@ -123,8 +123,9 @@
 
 							const appliedTags = collection.map(modelToSelection)
 							self._inputView.setData(appliedTags)
-
-							self.show()
+							if (appliedTags.length > 0) {
+								self.show()
+							}
 						},
 					})
 				}

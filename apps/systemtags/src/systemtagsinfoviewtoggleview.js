@@ -90,6 +90,10 @@
 				return this
 			},
 
+			setFileInfo: function() {
+
+			},
+
 		})
 
 	OCA.SystemTags.SystemTagsInfoViewToggleView = SystemTagsInfoViewToggleView
