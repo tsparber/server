@@ -63,16 +63,17 @@ const updateToken = async() => {
 	return resp.data.token
 }
 
-const poll = () => {
-	return updateToken()
-		.then(token => setRequestToken(token))
-		.catch(e => {
-			console.error('session heartbeat failed', e)
-		})
+const poll = async() => {
+	try {
+		const token = await updateToken()
+		setRequestToken(token)
+	} catch (e) {
+		console.error('session heartbeat failed', e)
+	}
 }
 
-const startPolling = interval => {
-	return setInterval(poll, interval)
+const startPolling = () => {
+	return setInterval(poll, getInterval() * 1000)
 }
 
 /**
@@ -84,28 +85,27 @@ export const initSessionHeartBeat = () => {
 		console.info('session heartbeat disabled')
 		return
 	}
-	let interval = startPolling(getInterval() * 1000)
+	let interval = startPolling()
 
-	window.addEventListener('online', () => {
+	window.addEventListener('online', async() => {
 		console.info('browser is online again, resuming heartbeat')
-		poll()
-			.then(() => {
-				console.info('session token successfully updated after resuming network')
+		interval = startPolling()
+		try {
+			await poll()
+			console.info('session token successfully updated after resuming network')
 
-				// Let apps know we're online and requests will have the new token
-				emit('networkOnline', {
-					success: true
-				})
+			// Let apps know we're online and requests will have the new token
+			emit('networkOnline', {
+				success: true
 			})
-			.catch(e => {
-				console.error('could not update session token after resuming network', e)
+		} catch (e) {
+			console.error('could not update session token after resuming network', e)
 
-				// Let apps know we're online but requests might have an outdated token
-				emit('networkOnline', {
-					success: false
-				})
+			// Let apps know we're online but requests might have an outdated token
+			emit('networkOnline', {
+				success: false
 			})
-		interval = startPolling(getInterval() * 1000)
+		}
 	})
 	window.addEventListener('offline', () => {
 		console.info('browser is offline, stopping heartbeat')
