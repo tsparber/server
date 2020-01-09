@@ -152,6 +152,13 @@
 					class="button primary icon-checkmark-white has-tooltip"
 					type="submit"
 					value="">
+				<div class="closeButton">
+					<Actions>
+						<ActionButton icon="icon-close" @click="onClose">
+							{{ t('settings', 'Close') }}
+						</ActionButton>
+					</Actions>
+				</div>
 			</div>
 		</form>
 		<div id="grid-header"
@@ -235,7 +242,7 @@
 
 <script>
 import userRow from './UserList/UserRow'
-import { Multiselect } from 'nextcloud-vue'
+import { Multiselect, Actions, ActionButton } from 'nextcloud-vue'
 import InfiniteLoading from 'vue-infinite-loading'
 import Vue from 'vue'
 
@@ -266,7 +273,9 @@ export default {
 	components: {
 		userRow,
 		Multiselect,
-		InfiniteLoading
+		InfiniteLoading,
+		Actions,
+		ActionButton
 	},
 	props: {
 		users: {
@@ -559,6 +568,9 @@ export default {
 				this.$router.push({ name: 'users' })
 				this.$refs.infiniteLoading.stateChanger.reset()
 			}
+		},
+		onClose() {
+			this.showConfig.showNewUserForm = false
 		}
 	}
 }
