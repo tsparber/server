@@ -73,7 +73,7 @@ class CalendarTest extends TestCase {
 		$c->delete();
 	}
 
-	
+
 	public function testDeleteFromGroup() {
 		$this->expectException(\Sabre\DAV\Exception\Forbidden::class);
 
@@ -419,7 +419,7 @@ EOD;
 		$this->assertEquals($end, $event->VEVENT->DTEND->getValue());
 
 		if ($isShared) {
-			$this->assertEquals('Busy', $event->VEVENT->SUMMARY->getValue());
+			$this->assertEquals($this->l10n->t('Busy'), $event->VEVENT->SUMMARY->getValue());
 			$this->assertArrayNotHasKey('ATTENDEE', $event->VEVENT);
 			$this->assertArrayNotHasKey('LOCATION', $event->VEVENT);
 			$this->assertArrayNotHasKey('DESCRIPTION', $event->VEVENT);
@@ -513,7 +513,7 @@ CALSCALE:GREGORIAN
 BEGIN:VEVENT
 CREATED:20171022T125130
 UID:PPL24TH8UGOWE94XET87ER
-SUMMARY:Busy
+SUMMARY:{$this->l10n->t('Busy')}
 CLASS:CONFIDENTIAL
 DTSTART;VALUE=DATE:20171024
 DTEND;VALUE=DATE:20171025
